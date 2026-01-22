@@ -1,16 +1,7 @@
 import type { NextConfig } from "next";
-import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev';
 
-const nextConfig = {
-  experimental: {
-    runtime: 'edge'
-  }
-}
-
-if (process.env.NODE_ENV === 'development') {
-  (async () => {
-    await setupDevPlatform();
-  })();
-}
+const nextConfig: NextConfig = {
+  reactStrictMode: true,
+};
 
 export default nextConfig;
