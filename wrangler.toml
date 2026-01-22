@@ -1,0 +1,14 @@
+name = "lms-platform"
+compatibility_date = "2024-05-12"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "binc"
+database_id = "8a4c6b9d-2462-468c-b30f-103d058fa3a4"
+migrations_dir = "drizzle"
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "modules"
