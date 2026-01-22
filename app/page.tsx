@@ -7,25 +7,14 @@ import { type InferSelectModel } from 'drizzle-orm';
 
 type Topic = InferSelectModel<typeof topics>;
 
+export const runtime = 'edge';
+
 export default async function Home() {
-  const session = await getSession();
-  let isAdmin = false;
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/topics`, {
+    cache: 'no-store',
+  });
 
-  if (session) {
-    isAdmin = session.role === 'admin';
-  }
-
-  // Fetch topics
-  // In dev, handle if table empty or DB not ready
-  let allTopics: Topic[] = [];
-  try {
-    const db = getDb();
-    if (db) {
-      allTopics = await db.select().from(topics).all();
-    }
-  } catch (e) {
-    console.error("Failed to fetch topics", e);
-  }
+  const allTopics = await res.json();
 
   return (
     <div className="min-h-screen p-8">
