@@ -7,8 +7,6 @@ import { type InferSelectModel } from 'drizzle-orm';
 
 type Topic = InferSelectModel<typeof topics>;
 
-export const runtime = 'edge';
-
 export default async function Home() {
   const session = await getSession();
   let isAdmin = false;
